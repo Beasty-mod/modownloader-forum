@@ -343,6 +343,37 @@ function sendMessage() {
     scrollBottom();
 }
 
+function createMessageElement(message) {
+
+    const messagesContainer =
+        document.getElementById("messages");
+
+    const box = document.createElement("div");
+
+    box.className = "message-box";
+
+    const date =
+        new Date(message.time).toLocaleString();
+
+    box.innerHTML = `
+        <div class="message-top">
+            <div class="username">
+                ${message.username}
+            </div>
+
+            <div class="type">
+                ${message.type}
+            </div>
+        </div>
+
+        <div class="message-text">
+            ${message.text}
+        </div>
+    `;
+
+    messagesContainer.appendChild(box);
+}
+
 function scrollBottom() {
     const messagesContainer = document.getElementById("messages");
 
@@ -358,6 +389,9 @@ document
             sendMessage();
         }
     });
+
+window.enterForum = enterForum;
+window.sendMessage = sendMessage;
 </script>
 
 </body>
